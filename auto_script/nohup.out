@@ -1,0 +1,283 @@
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565429699.6854715 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565429700.158992 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565429849.6934407 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565429850.192142 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished coro=<cluster_scheduler.handle_socket() done, defined at /home/ubuntu/a2_auto/server_src/cluster_scheduler.py:59> exception=JSONDecodeError('Expecting value: line 1 column 1 (char 0)')>
+Traceback (most recent call last):
+  File "/home/ubuntu/a2_auto/server_src/cluster_scheduler.py", line 62, in handle_socket
+    receive_data = await self.dict_tool.read_bytes2dict(reader,writer)
+  File "/home/ubuntu/a2_auto/server_src/server/dict_bytes.py", line 17, in read_bytes2dict
+    data_dict = json.loads (data_bytes.decode ())
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565429914.755285 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565429915.2519732 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565432600.7428672 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565432601.2350228 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565432798.605246 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565432799.1100056 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565433791.4573488 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565433791.9592996 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565433970.3167126 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565433971.4214487 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434042.2138963 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434115.8124566 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434189.3930964 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434262.9862142 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565434507.8641336 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434519.216343 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434589.9983695 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434663.620031 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434737.2337523 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565434751.0147521 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434752.0702121 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434822.9027264 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434896.4166863 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565434970.049447 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565435043.6785805 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565436685.5735059 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565436686.5817332 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565436757.406952 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565436831.033061 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565436904.6476495 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565436978.2340384 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+Traceback (most recent call last):
+  File "auto_server.py", line 250, in <module>
+    a2 = auto_server()
+  File "auto_server.py", line 41, in __init__
+    self.run = asyncio.run(self.main())
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/asyncio/base_events.py", line 584, in run_until_complete
+    return future.result()
+  File "auto_server.py", line 246, in main
+    await asyncio.gather(self.socket())
+  File "auto_server.py", line 237, in socket
+    self.handle_socket, self.addr, self.port)
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/asyncio/streams.py", line 114, in start_server
+    return await loop.create_server(factory, host, port, **kwds)
+  File "/home/ubuntu/anaconda3/envs/infocom/lib/python3.7/asyncio/base_events.py", line 1378, in create_server
+    % (sa, err.strerror.lower())) from None
+OSError: [Errno 98] error while attempting to bind on address ('0.0.0.0', 20020): address already in use
+Terminated
+Terminated
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565438061.2074068 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565438072.55697 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565438143.221308 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565438216.8126404 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565438240.3015072 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565438374.074248 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565438445.2070014 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565438759.279562 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565438830.3963597 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565442483.6755242 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565442554.7079363 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565444040.1224482 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565444111.2045152 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565445221.9544754 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565445293.0697496 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565445707.9584374 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565445791.8244054 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565445862.7083101 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565446321.0423245 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565446391.3866367 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565447047.1063342 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565447117.4117618 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565447288.694181 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565447359.0129428 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565448079.7183156 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565448150.1068027 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565451258.3464253 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565451328.6925583 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565451523.700911 
+INFO:root:Recive allocation from controller!
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:root:Recive allocation from controller at 1565454431.164514 
+INFO:root:Recive allocation from controller!
+INFO:root:Recive allocation from controller at 1565454491.0594537 
+INFO:root:Recive allocation from controller!
+Traceback (most recent call last):
+  File "auto_server.py", line 250, in <module>
+    a2 = auto_server()
+  File "auto_server.py", line 41, in __init__
+    self.run = asyncio.run(self.main())
+AttributeError: module 'asyncio' has no attribute 'run'
