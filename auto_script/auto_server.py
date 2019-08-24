@@ -43,7 +43,7 @@ class auto_server():
         self.run = asyncio.run(self.main())
 
     def init_source(self):
-        cmd = "git clone https://github.com/Sichen-hu/a2_auto %s" % self.source_root
+        cmd = "git clone https://github.com/ginger0106/a2_auto_ginger %s" % self.source_root
         pass
 
 

@@ -225,36 +225,36 @@ if __name__ == "__main__":
         'type': "terminate",
     }
 
-    # hosts = {
-    #     "region_0":{
-    #         "scheduler":"18.136.13.110",
-    #        # "gpu_server":"18.139.235.198",
-    #         "gpu_server":"",
-    #         "cpu_server":"18.136.13.110",
-    #         "client":"18.139.237.235"
-    #        # "client":""
-    #     },
-    #     "region_1":{
-    #         "scheduler":"13.235.174.165",
-    #       #  "gpu_server":"13.235.118.34",
-    #         "gpu_server":"",
-    #         "cpu_server":"13.235.174.165",
-    #         "client":"13.233.6.157"
-    #         #"client":""
-    #     },
+    hosts = {
+        "region_0":{
+            "scheduler":"18.136.13.110",
+           # "gpu_server":"18.139.235.198",
+            "gpu_server":"",
+            "cpu_server":"18.136.13.110",
+            "client":"18.139.237.235"
+           # "client":""
+        },
+        "region_1":{
+            "scheduler":"13.235.174.165",
+          #  "gpu_server":"13.235.118.34",
+            "gpu_server":"",
+            "cpu_server":"13.235.174.165",
+            "client":"13.233.6.157"
+            #"client":""
+        },
     #     # "region_9":{
     #     #     "test":"127.0.0.1",
     #     # },
     # }
-    hosts = {
-        "region_0":{
-            "scheduler":"127.0.0.1",
-           # "gpu_server":"18.139.235.198",
-            "gpu_server":"",
-            "cpu_server":"127.0.0.1",
-            "client":"127.0.0.1"
-           # "client":""
-        },
+    # hosts = {
+    #     "region_0":{
+    #         "scheduler":"127.0.0.1",
+    #        # "gpu_server":"18.139.235.198",
+    #         "gpu_server":"",
+    #         "cpu_server":"127.0.0.1",
+    #         "client":"127.0.0.1"
+    #        # "client":""
+    #     },
         # "region_1":{
         #     "scheduler":"0.0.0.0",
         #   #  "gpu_server":"13.235.118.34",
