@@ -226,7 +226,7 @@ if __name__ == "__main__":
     }
 
     hosts = {
-        "region_0":{
+        "region_0":{ #xinjiapo
             "scheduler":"18.136.13.110",
            # "gpu_server":"18.139.235.198",
             "gpu_server":"",
@@ -234,7 +234,7 @@ if __name__ == "__main__":
             "client":"18.139.237.235"
            # "client":""
         },
-        "region_1":{
+        "region_1":{ # mengmai
             "scheduler":"13.235.174.165",
           #  "gpu_server":"13.235.118.34",
             "gpu_server":"",
@@ -242,6 +242,40 @@ if __name__ == "__main__":
             "client":"13.233.6.157"
             #"client":""
         },
+        "region_2": { #dongjing
+            "scheduler": "13.113.242.68",
+            #  "gpu_server":"13.235.118.34",
+            "gpu_server": "",
+            "cpu_server": "13.113.242.68",
+            "client": "3.114.108.113"
+            # "client":""
+        },
+        "region_3": {  # elegang
+            "scheduler": "54.71.245.31",
+            #  "gpu_server":"13.235.118.34",
+            "gpu_server": "",
+            "cpu_server": "54.71.245.31",
+            "client": "54.201.56.241"
+            # "client":""
+        },
+        "region_4": {  #ehaie
+            "scheduler": "18.218.238.223",
+            #  "gpu_server":"13.235.118.34",
+            "gpu_server": "",
+            "cpu_server": "18.218.238.223",
+            "client": "3.13.61.24"
+            # "client":""
+        },
+        "region_5": {  #xini
+            "scheduler": "52.63.190.63",
+            #  "gpu_server":"13.235.118.34",
+            "gpu_server": "",
+            "cpu_server": "52.63.190.63",
+            "client": "13.211.40.137"
+            # "client":""
+        },
+
+
     #     # "region_9":{
     #     #     "test":"127.0.0.1",
     #     # },
