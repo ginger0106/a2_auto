@@ -83,7 +83,7 @@ def activate_hosts(hosts):
                 "config": {
                     "role": "client",
                     "region_id": i,
-                    "client_number": 10,
+                    "client_number": 2,
                     "zipf_param": 2,
                     "min_acc": 0.6,
                     "max_acc": 0.9,
