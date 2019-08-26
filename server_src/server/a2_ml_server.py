@@ -4,7 +4,7 @@ import subprocess
 import json
 from shlex import quote
 from . import dict_bytes as db
-from dict_bytes import PATH
+from .dict_bytes import PATH
 import os
 # from .model import *
 # from .measurement import *
