@@ -88,7 +88,7 @@ def activate_hosts(hosts):
                     "min_acc": 0.5,
                     "max_acc": 0.9,
                     "min_lat": 1.0,
-                    "max_lat": 5.0,
+                    "max_lat": 10.0,
                     "comm": 60, #second
                     "seed": i,
                     "mobile_trace":0,
