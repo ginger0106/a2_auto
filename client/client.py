@@ -303,7 +303,7 @@ if __name__ == "__main__":
         trace_file = args[6]
         comm_interval = args[7]
         unbuffered_print(args)
-        a2_client("0.0.0.0",8888,region_id, client_id, model_name, acc_limit, latency_limit, trace_file, comm_interval)
+        a2_client("18.139.237.235",8888,region_id, client_id, model_name, acc_limit, latency_limit, trace_file, comm_interval)
     except Exception as e:
         traces = traceback.format_exc()
 
