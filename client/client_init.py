@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
         unbuffered_print(str(index)+str(cmd))
         p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE, preexec_fn=os.setsid)
-        unbuffered_print(p.stderr.readlines())
+        # unbuffered_print(p.stderr.readlines())
         f.write("%s\n"%str(p.pid))
 
     f.close()
