@@ -85,7 +85,7 @@ def activate_hosts(hosts):
                     "region_id": i,
                     "client_number": 3,
                     "zipf_param": 2,
-                    "min_acc": 0.7,
+                    "min_acc": 0.6,
                     "max_acc": 0.9,
                     "min_lat": 1.0,
                     "max_lat": 10.0,
