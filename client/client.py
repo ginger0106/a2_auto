@@ -69,7 +69,7 @@ class a2_client():
 
         trace_data = None
         try:
-            trace_data = list(np.load(trace_file)*10)#ginger
+            trace_data = list(np.load(trace_file))#ginger
         except:
             unbuffered_print("Reading trace file Error, using default settings")
             trace_data = [2] * 3600
