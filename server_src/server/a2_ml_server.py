@@ -35,7 +35,7 @@ server_profile1 = {
 ## --> controller allocate_done_stats = {'type':'step','step':step, 'addr':addr}
 
 # data receive:
-#<--client  bw = {'type':'bw', 'content':'a'*800}
+#<--client  bw = {'type':'bw', 'content':'a'*800}0000000000000
 #<--controller allocation ={'type':'allocation', 'addr' = addr, 'step' = step ,{self.model_name[i]: {'port': self.port[i], 'cpu': round (cpu_allocation[i], 2), 'step': 0}
 #                  for i in range (len (self.model_zoo))}}
 
@@ -164,15 +164,15 @@ class a2_ml_server ():
                             f'--mount type=bind,source={self.model_root + model_name}/,target=/models/{model_name} ' \
                             f'--mount type=bind,source={config_file},target=/models/batching_parameters.config ' \
                             f'-e MODEL_NAME={model_name} -t tensorflow/serving:latest-gpu --per_process_gpu_memory_fraction={frac} '  \
-                            f'--enable_batching=true --batching_parameters_file=/models/batching_parameters.config' \
-                            f'--rest_api_timeout_in_ms=2000 &'
+                            f'--enable_batching=true --batching_parameters_file=/models/batching_parameters.config &' \
+                            # f'--rest_api_timeout_in_ms=2000 &'
                 else:
                     cmd_run = f'docker run --cpus={frac} --name="{model_name + "_"+str(p)}" -p {p}:8501'\
                             f' --mount type=bind,source={self.model_root + model_name}/,target=/models/{model_name}'\
                             f' --mount type=bind,source={config_file},target=/models/batching_parameters.config'\
                             f' -e MODEL_NAME={model_name} -t tensorflow/serving:latest ' \
-                            f' --enable_batching=true --batching_parameters_file=/models/batching_parameters.config' \
-                            f' --rest_api_timeout_in_ms=3000 >/tmp/serving.log &'
+                            f' --enable_batching=true --batching_parameters_file=/models/batching_parameters.config &' \
+                            # f' --rest_api_timeout_in_ms=3000 &'
 
                     # f' --enable_batching=true --batching_parameters_file=/models/batching_parameters.config' \
 
