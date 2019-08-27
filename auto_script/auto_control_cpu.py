@@ -258,7 +258,7 @@ if __name__ == "__main__":
             "client": "54.201.56.241"
             # "client":""
         },
-        "region_4": {  #ehaie
+        "region_4": {  #ehaie 4
             "scheduler": "18.218.238.223",
             #  "gpu_server":"13.235.118.34",
             "gpu_server": "",
