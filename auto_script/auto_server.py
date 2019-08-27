@@ -211,7 +211,7 @@ class auto_server():
             if returncode is None:
                 status_dict[role] = "running"
             else:
-                status_dict[role] = "exit"
+                status_dict[role] = f"exit{returncode}"
 
         return status_dict
 
