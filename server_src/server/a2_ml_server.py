@@ -49,7 +49,7 @@ class a2_ml_server ():
         self.addr = addr
         self.server_load_send = {'type':'load'}
         self.server_allocat_get = {}
-        self.model_root = PATH+"Infocom19/exp/real_exp/ml_server/models/"
+        self.model_root = PATH+"model_root/"
         self.config_root = PATH+"model_root/" + "config_root/"
         self.scheduler_writer = None
         self.run = asyncio.run (self.main ())
