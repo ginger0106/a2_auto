@@ -177,8 +177,8 @@ class a2_client():
 
         config_list = self.config_prob_list[0]
         prob_list = self.config_prob_list[1]
-        if not (0.9 < sum(prob_list) < 1.00001):
-            raise ValueError("The probabilities are not normalized!")
+        # if not (0.9 < sum(prob_list) < 1.00001):
+        #     raise ValueError("The probabilities are not normalized!")
         if len(config_list) != len(prob_list):
             raise ValueError("The length of two input lists are not match!")
 
