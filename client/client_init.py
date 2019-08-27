@@ -119,6 +119,7 @@ if __name__ == "__main__":
             unbuffered_print(index)
             cmd = cmd + " >>/tmp/client_1.log"
 
+        unbuffered_print(str(index)+str(cmd))
         p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE, preexec_fn=os.setsid)
         unbuffered_print(p.stdout.readlines())
         f.write("%s\n"%str(p.pid))
