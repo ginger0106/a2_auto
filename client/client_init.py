@@ -113,12 +113,14 @@ if __name__ == "__main__":
     pids = []
     for index,cmd in enumerate(cmds):
         if index == 0:
+            unbuffered_print(index)
             cmd = cmd + " >>/tmp/client.log"
         else:
+            unbuffered_print(index)
             cmd = cmd + " >>/tmp/client_1.log"
 
         p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE, preexec_fn=os.setsid)
-        unbuffered_print(p.stdout)
+        unbuffered_print(p.stdout.readlines())
         f.write("%s\n"%str(p.pid))
 
     f.close()
