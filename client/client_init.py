@@ -108,6 +108,7 @@ if __name__ == "__main__":
                             comm_interval = comm_interval,mobile_trace=mobile_trace,
                             res18_trace=res18_trace)
     cmds =  c_g.command_gen()
+    unbuffered_print(cmds)
     f = open("/tmp/client_pid.txt","w")
     pids = []
     for index,cmd in enumerate(cmds):
