@@ -186,12 +186,8 @@ class a2_client():
         acc_prob = 0.0
         for item in zip(config_list, prob_list):
             acc_prob += item[1]
-        unbuffered_print(1111)
-        unbuffered_print(acc_prob)
-        unbuffered_print(random_normalized_num)
-        unbuffered_print(item)
-        if random_normalized_num < acc_prob:
-            return item[0]
+            if random_normalized_num < acc_prob:
+                return item[0]
 
 
     def request_generator(self,count,num_request=2):
