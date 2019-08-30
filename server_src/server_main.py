@@ -3,8 +3,9 @@ import sys
 import traceback
 
 device = sys.argv[1]
+addr = sys.argv[2]
 try:
-    a2_ml_server(device=device)
+    a2_ml_server(device=device,addr=addr)
 except Exception as e:
     traces = traceback.format_exc()
 

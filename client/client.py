@@ -241,13 +241,13 @@ class a2_client():
         #     }
         #
         # }
-        unbuffered_print(ctrl_msg)
+        # unbuffered_print(ctrl_msg)
         config_list = []
         prob_list = []
         for model_version, values in ctrl_msg.items():
             unbuffered_print("%s ,%s"%(model_version, type(values)))
             config = {}
-            config["model_name_version"] = model_version
+            config["model_name_version"] = f'{model_version[:6]}_dcp_{model_version[6]}'
             config["model_ver"] = values["model_ver"]
             config["data_ver"] = values["data_ver"]
             config["urls"] = values["url"]
@@ -272,7 +272,7 @@ class a2_client():
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
 
-        unbuffered_print(message)
+        # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
           self.ctrl_addr, self.ctrl_port,limit=2**64)
 
@@ -304,9 +304,11 @@ if __name__ == "__main__":
         comm_interval = args[7]
         unbuffered_print(args)
         a2_client("18.139.237.235",8888,region_id, client_id, model_name, acc_limit, latency_limit, trace_file, comm_interval)
+        # a2_client("192.168.1.104",8888,region_id, client_id, model_name, acc_limit, latency_limit, trace_file, comm_interval) #ginger
+
     except Exception as e:
         traces = traceback.format_exc()
 
-        with open("/tmp/client.log","a") as f:
+        with open("/tmp/client_error.log","a") as f:
             f.writelines([str(traces),str(e)])
             f.close()

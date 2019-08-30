@@ -167,6 +167,9 @@ if __name__=="__main__":
         args = sys.argv[1:]
         gpu_server = []
         cpu_server = []
+        # addr = str(sys.argv[-1])
+        # unbuffered_print(111)
+        # unbuffered_print(addr)
 
         flag = False
         for item in args:
@@ -178,7 +181,7 @@ if __name__=="__main__":
             else:
                 gpu_server.append(item)
 
-        a2 = cluster_scheduler(cpu_server_list = cpu_server, gpu_server_list=gpu_server)
+        a2 = cluster_scheduler(addr=cpu_server[0],cpu_server_list = cpu_server, gpu_server_list=gpu_server)#ginger
     except Exception as e:
         traces = traceback.format_exc()
 

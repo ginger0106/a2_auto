@@ -6,6 +6,9 @@ import dict_bytes as db
 from dict_bytes import PATH
 
 import os,signal
+import argparse
+
+
 import time
 # from .model import *
 # from .measurement import *
@@ -112,7 +115,7 @@ class auto_server():
         if role == "server":
             server_script_path = PATH+"a2_auto/server_src/server_main.py"
             device = config["device"]
-            cmd = "python3.7 %s %s" % (server_script_path, device)
+            cmd = "python3.7 %s %s %s" % (server_script_path, device,self.addr) #ginger
             print(cmd)
             # return
 
@@ -150,7 +153,7 @@ class auto_server():
 
             scheduler_path = PATH+"a2_auto/server_src/cluster_scheduler.py"
 
-            cmd = "python3.7 %s " % scheduler_path
+            cmd = f"python3.7 %s" % scheduler_path
 
             for item in gpu_server_list:
                 cmd = cmd + item + " "
@@ -249,4 +252,10 @@ class auto_server():
 
 
 if __name__ == "__main__":
-    a2 = auto_server()
+    import argparse
+
+    parser = argparse.ArgumentParser ()
+    parser.add_argument ("-a", default='0.0.0.0', type=str, help='controller_ip')  # server ip addr
+    # version_stg,device_type,time_slot,con_addr,con_port,client_num
+    args = parser.parse_args ()
+    a2 = auto_server(args.a)

@@ -227,50 +227,50 @@ if __name__ == "__main__":
 
     hosts = {
         "region_0":{ #xinjiapo
-            "scheduler":"18.136.13.110",
+            "scheduler":"18.139.235.198",
            # "gpu_server":"18.139.235.198",
             "gpu_server":"",
-            "cpu_server":"18.136.13.110",
+            "cpu_server":"18.139.235.198",
             "client":"18.139.237.235"
            # "client":""
         },
         "region_1":{ # mengmai
-            "scheduler":"13.235.174.165",
+            "scheduler":"13.235.118.34",
           #  "gpu_server":"13.235.118.34",
             "gpu_server":"",
-            "cpu_server":"13.235.174.165",
+            "cpu_server":"13.235.118.34",
             "client":"13.233.6.157"
             #"client":""
         },
         "region_2": { #dongjing
-            "scheduler": "13.113.242.68",
+            "scheduler": "3.112.169.61",
             #  "gpu_server":"13.235.118.34",
             "gpu_server": "",
-            "cpu_server": "13.113.242.68",
+            "cpu_server": "3.112.169.61",
             "client": "3.114.108.113"
             # "client":""
         },
         "region_3": {  # elegang
-            "scheduler": "54.71.245.31",
+            "scheduler": "35.155.138.231",
             #  "gpu_server":"13.235.118.34",
             "gpu_server": "",
-            "cpu_server": "54.71.245.31",
+            "cpu_server": "35.155.138.231",
             "client": "54.201.56.241"
             # "client":""
         },
         "region_4": {  #ehaie 4
-            "scheduler": "18.218.238.223",
+            "scheduler": "3.19.110.66",
             #  "gpu_server":"13.235.118.34",
             "gpu_server": "",
-            "cpu_server": "18.218.238.223",
+            "cpu_server": "3.19.110.66",
             "client": "3.13.61.24"
             # "client":""
         },
         "region_5": {  #xini
-            "scheduler": "52.63.190.63",
+            "scheduler": "3.106.150.79",
             #  "gpu_server":"13.235.118.34",
             "gpu_server": "",
-            "cpu_server": "52.63.190.63",
+            "cpu_server": "3.106.150.79",
             "client": "13.211.40.137"
             # "client":""
         },
@@ -329,10 +329,10 @@ if __name__ == "__main__":
     #         "client": "192.168.1.115"
     #         # "client":""
     #     },
-
-        # "region_9":{
-        #     "test":"127.0.0.1",
-        # },
+    #
+    #     # "region_9":{
+    #     #     "test":"127.0.0.1",
+    #     # },
     # }
 
     # cmd_dict = {

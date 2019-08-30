@@ -112,14 +112,16 @@ if __name__ == "__main__":
     f = open("/tmp/client_pid.txt","w")
     pids = []
     for index,cmd in enumerate(cmds):
-        if index == 0:
-            unbuffered_print(index)
-            cmd = cmd + " >>/tmp/client.log"
-        else:
-            unbuffered_print(index)
-            cmd = cmd + " >>/tmp/client_1.log"
+        cmd = cmd + f" >>/tmp/client_{index}.log"
+        #
+        # if index == 0:
+        #     unbuffered_print(index)
+        #     cmd = cmd + " >>/tmp/client.log"
+        # else:
+        #     unbuffered_print(index)
+        #     cmd = cmd + " >>/tmp/client_1.log"
 
-        unbuffered_print(str(index)+str(cmd))
+        # unbuffered_print(str(index)+str(cmd))
         p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE, preexec_fn=os.setsid)
         # unbuffered_print(p.stderr.readlines())
         f.write("%s\n"%str(p.pid))
