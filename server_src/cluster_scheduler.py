@@ -181,7 +181,7 @@ if __name__=="__main__":
             else:
                 gpu_server.append(item)
 
-        a2 = cluster_scheduler(addr=cpu_server[0],cpu_server_list = cpu_server, gpu_server_list=gpu_server)#ginger
+        a2 = cluster_scheduler(addr='0.0.0.0',cpu_server_list = cpu_server, gpu_server_list=gpu_server)#ginger
     except Exception as e:
         traces = traceback.format_exc()
 
