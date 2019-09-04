@@ -12,6 +12,9 @@ import json
 import asyncio
 from dict_bytes import PATH
 
+def get_time():
+    t = time.localtime(time.time())
+    return "%s:%s:%s"%(t.tm_hour,t.tm_min,t.tm_sec)
 
 def unbuffered_print(p_str):
     print(p_str, flush=True)
@@ -39,7 +42,9 @@ class tf_serving_cls():
         model_version = config['model_ver']
         data_version = config['data_ver']
         url = random.sample(config["urls"],1)[0]
-        r_time = config['time']
+        # r_time = config['time']
+        # r
+        r_time = get_time()
         batch = config["batch"]
         count = 0
         unbuffered_print("Sending request: %s"%decision_dict["id"])
@@ -83,6 +88,7 @@ class tf_serving_cls():
                 temp["data_ver"] = data_version
                 temp["time"] = r_time
                 temp["batch"] = batch
+                # temp[""]
                 req_recorder[decision_dict["id"]] = temp
                 unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
                 return
