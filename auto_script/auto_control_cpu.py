@@ -83,7 +83,7 @@ def activate_hosts(hosts):
                 "config": {
                     "role": "client",
                     "region_id": i,
-                    "client_number": 5,
+                    "client_number": 3,
                     "zipf_param": 2,
                     "min_acc": 0.5,
                     "max_acc": 0.85,
@@ -154,6 +154,61 @@ def status_all(hosts):
             print("    %s : %s "%(r,s))
     # print(status_result_dict)
 
+def bandwidth(hosts):
+    for i in range(len(hosts)):
+        region_ip_dict = hosts["region_%s" % i]
+        scheduler_ip = region_ip_dict["scheduler"]
+        cpu_server_ip = region_ip_dict["cpu_server"]
+        gpu_server_ip = region_ip_dict["gpu_server"]
+        client_ip = region_ip_dict["client"]
+
+        act_scheduler_dict = {
+            'type': "activate",
+            "config": {
+                "role": "scheduler",
+                "gpu_server": [gpu_server_ip],
+                "cpu_server": [cpu_server_ip],
+            }
+        }
+        scheduler_ip = region_ip_dict["scheduler"]
+        asyncio.run(sendmsg(scheduler_ip, 20020, act_scheduler_dict))
+
+        act_server_dict = {
+            'type': "activate",
+            "config": {
+                "role": "server",
+                "device": "cpu"
+            }
+        }
+        # asyncio.run(sendmsg(gpu_server_ip,20020,act_server_dict))
+
+        act_server_dict = {
+            'type': "activate",
+            "config": {
+                "role": "server",
+                "device": "cpu"
+            }
+        }
+        asyncio.run(sendmsg(cpu_server_ip, 20020, act_server_dict))
+
+        act_client_dict = {
+            'type': "activate",
+            "config": {
+                "role": "client",
+                "region_id": i,
+                "client_number": 3,
+                "zipf_param": 2,
+                "min_acc": 0.5,
+                "max_acc": 0.85,
+                "min_lat": 1.0,
+                "max_lat": 10.0,
+                "comm": 60,  # second
+                "seed": i,
+                "mobile_trace": 0,
+                "res18_trace": 1
+            }
+        }
+        asyncio.run(sendmsg(client_ip, 20020, act_client_dict))
 
 
 
@@ -397,6 +452,8 @@ if __name__ == "__main__":
                 }
                 asyncio.run(sendmsg(ip,20020,cmd_dict))
                 sh_cmd = input()
+        elif command =="bw":
+            bandwidth(hosts)
 
 
     #
