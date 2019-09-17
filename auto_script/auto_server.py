@@ -90,79 +90,79 @@ class auto_server():
         await self.dict_tool.send_dict2bytes(return_data, writer)
         writer.close()
     async def activate_role_bw(self,config):
-        role = config["role"]
-
-        if role in self.process_pool.keys():
-            return {"result_code": 0,"result_info":"Role already activated"}
-
-
-        if role == "server":
-            server_script_path = PATH+"a2_auto/server_src/server_main.py"
-            device = config["device"]
-            cmd = "python3.7 %s %s %s" % (server_script_path, device,self.addr) #ginger
-            print(cmd)
-            # return
-
-
-        elif role == "client":
-            region_id = config["region_id"]
-            client_number = config["client_number"]
-            zipf_param = config["zipf_param"]
-            min_acc = config["min_acc"]
-            max_acc = config["max_acc"]
-            min_lat = config["min_lat"]
-            max_lat = config["max_lat"]
-            comm_interval = config["comm"]
-            random_seed = config["seed"]
-            mobile_trace = config["mobile_trace"]
-            res18_trace = config["res18_trace"]
-
-            param_list = "%s %s %s %s %s %s %s %s %s %s %s"
-            param_list = param_list % (region_id, client_number, zipf_param,
-                                        min_acc, max_acc, min_lat, max_lat,
-                                        comm_interval, random_seed, mobile_trace,res18_trace)
-
-            client_script_path = PATH+"a2_auto/client/client_init.py"
-
-            cmd = "python3.7 %s %s"%(client_script_path, param_list)
-            print(cmd)
-            # return
-
-        elif role == "controller":
-            cmd = "python3.7 controller.py"
-
-        elif role == "scheduler":
-            gpu_server_list = config["gpu_server"]
-            cpu_server_list = config["cpu_server"]
-
-            scheduler_path = PATH+"a2_auto/server_src/cluster_scheduler.py"
-
-            cmd = f"python3.7 %s" % scheduler_path
-
-            for item in gpu_server_list:
-                cmd = cmd + item + " "
-
-            cmd = cmd + "s "
-
-            for item in cpu_server_list:
-                cmd = cmd + item + " "
-            print(cmd)
-            # return
-        elif role == "test":
-            cmd = "python3.7 print_test.py"
-        else:
-            return {"result_code": 0,"result_info":"Undefined Type"}
-
-        logfile = "/tmp/%s.log"%role
-        cmd = cmd + " > %s"%logfile
-        p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,preexec_fn=os.setsid)
-
+        # role = config["role"]
+        #
         # if role in self.process_pool.keys():
-        #     self.process_pool[role].append(p)
-        #     self.output_dict[role].append("")
+        #     return {"result_code": 0,"result_info":"Role already activated"}
+        #
+        #
+        # if role == "server":
+        #     server_script_path = PATH+"a2_auto/server_src/server_main.py"
+        #     device = config["device"]
+        #     cmd = "python3.7 %s %s %s" % (server_script_path, device,self.addr) #ginger
+        #     print(cmd)
+        #     # return
+        #
+        #
+        # elif role == "client":
+        #     region_id = config["region_id"]
+        #     client_number = config["client_number"]
+        #     zipf_param = config["zipf_param"]
+        #     min_acc = config["min_acc"]
+        #     max_acc = config["max_acc"]
+        #     min_lat = config["min_lat"]
+        #     max_lat = config["max_lat"]
+        #     comm_interval = config["comm"]
+        #     random_seed = config["seed"]
+        #     mobile_trace = config["mobile_trace"]
+        #     res18_trace = config["res18_trace"]
+        #
+        #     param_list = "%s %s %s %s %s %s %s %s %s %s %s"
+        #     param_list = param_list % (region_id, client_number, zipf_param,
+        #                                 min_acc, max_acc, min_lat, max_lat,
+        #                                 comm_interval, random_seed, mobile_trace,res18_trace)
+        #
+        #     client_script_path = PATH+"a2_auto/client/client_init.py"
+        #
+        #     cmd = "python3.7 %s %s"%(client_script_path, param_list)
+        #     print(cmd)
+        #     # return
+        #
+        # elif role == "controller":
+        #     cmd = "python3.7 controller.py"
+        #
+        # elif role == "scheduler":
+        #     gpu_server_list = config["gpu_server"]
+        #     cpu_server_list = config["cpu_server"]
+        #
+        #     scheduler_path = PATH+"a2_auto/server_src/cluster_scheduler.py"
+        #
+        #     cmd = f"python3.7 %s" % scheduler_path
+        #
+        #     for item in gpu_server_list:
+        #         cmd = cmd + item + " "
+        #
+        #     cmd = cmd + "s "
+        #
+        #     for item in cpu_server_list:
+        #         cmd = cmd + item + " "
+        #     print(cmd)
+        #     # return
+        # elif role == "test":
+        #     cmd = "python3.7 print_test.py"
         # else:
-        self.process_pool[role] = p
-        self.output_dict[role] = logfile
+        #     return {"result_code": 0,"result_info":"Undefined Type"}
+        #
+        # logfile = "/tmp/%s.log"%role
+        # cmd = cmd + " > %s"%logfile
+        # p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,preexec_fn=os.setsid)
+        #
+        # # if role in self.process_pool.keys():
+        # #     self.process_pool[role].append(p)
+        # #     self.output_dict[role].append("")
+        # else:
+        # self.process_pool[role] = p
+        # self.output_dict[role] = logfile
 
         bw_path = PATH+"a2/bw_client/control_bw.py"
         cmd = f"sudo setcap cap_net_raw,cap_net_admin+ep /bin/ip; python3.7 {bw_path} -p {PATH}a2/bw_client/cpu_srver.txt -b 750"
