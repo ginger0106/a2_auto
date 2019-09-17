@@ -155,12 +155,47 @@ def status_all(hosts):
     # print(status_result_dict)
 
 def bandwidth(hosts):
+    # for i in range(len(hosts)):
+    #     region_ip_dict = hosts["region_%s"%i]
+    #     # scheduler_ip = region_ip_dict["scheduler"]
+    #     # cpu_server_ip = region_ip_dict["cpu_server"]
+    #     # gpu_server_ip = region_ip_dict["scheduler"]
+    #     # client_ip = region_ip_dict["client"]
+    #     for role,ip in region_ip_dict.items():
+    #         print("send pull to %s"%ip)
+    #         bw_dict = {
+    #             'type': "bandwidth",
+    #         }
+    #         asyncio.run(sendmsg(ip,20020,bw_dict))
+
     for i in range(len(hosts)):
+        # region_ip_dict = hosts["region_%s" % i]
+        #     # scheduler_ip = region_ip_dict["scheduler"]
+        #     # cpu_server_ip = region_ip_dict["cpu_server"]
+        #     # gpu_server_ip = region_ip_dict["scheduler"]
+        #     # client_ip = region_ip_dict["client"]
+        #     for role,ip in region_ip_dict.items():
+        #         print("send pull to %s"%ip)
+        #         bw_dict = {
+        #             'type': "bandwidth",
+        #         }
+        #         asyncio.run(sendmsg(ip,20020,bw_dict))
+
+
         region_ip_dict = hosts["region_%s" % i]
         scheduler_ip = region_ip_dict["scheduler"]
         cpu_server_ip = region_ip_dict["cpu_server"]
         gpu_server_ip = region_ip_dict["gpu_server"]
         client_ip = region_ip_dict["client"]
+
+        bw_dict = {
+            'type': "bandwidth",
+            # "config": {
+            #     "role": "server",
+            #     "device": "cpu"
+            # }
+        }
+        asyncio.run(sendmsg(cpu_server_ip, 20020, bw_dict))
 
         act_scheduler_dict = {
             'type': "activate",
