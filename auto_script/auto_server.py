@@ -85,11 +85,11 @@ class auto_server():
             return_data = {"Result":p_str}
         elif receive_data['type'] == 'bandwidth':
             act_config = receive_data["config"]
-            return_data = self.activate_role_bw(act_config)
+            return_data = await self.activate_role_bw(act_config)
 
         await self.dict_tool.send_dict2bytes(return_data, writer)
         writer.close()
-    def activate_role_bw(self,config):
+    async def activate_role_bw(self,config):
         role = config["role"]
 
         if role in self.process_pool.keys():
@@ -167,9 +167,10 @@ class auto_server():
         bw_path = PATH+"a2/bw_client/control_bw.py"
         cmd = f"sudo setcap cap_net_raw,cap_net_admin+ep /bin/ip; python3.7 {bw_path} -p {PATH}a2/bw_client/cpu_srver.txt -b 750"
         p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,preexec_fn=os.setsid)
-        time.sleep(60)
 
-        return {"result_code": 1,"result_info":"Activate Done"}
+        await asyncio.sleep(60)
+
+        return {"result_code": 1,"result_info":p.stdout.readlines()}
 
     def change_bw(self):
         cmd = "sudo setcao cap_net_raw,cap_net_admin+ep /bin/ip"
