@@ -44,7 +44,8 @@ class tf_serving_cls():
         url = random.sample(config["urls"],1)[0]
         # r_time = config['time']
         # r
-        r_time = get_time()
+        # r_time = get_time()
+        r_time = time.time()
         batch = config["batch"]
         count = 0
         unbuffered_print("Sending request: %s"%decision_dict["id"])
