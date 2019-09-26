@@ -15,6 +15,7 @@ import numpy as np
 import itertools
 import traceback
 import aiohttp
+import timeit
 
 # from .model import *
 # from .measurement import *
@@ -66,6 +67,7 @@ class a2_client():
         self.acc_lim = float(acc_lim)
         self.lat_lim = float(lat_lim)
         self.comm_interval = int(comm_interval)
+        self.complete_time = 0
 
         trace_data = None
         try:
@@ -139,9 +141,9 @@ class a2_client():
     async def client_core(self):
         await self.phase_one()
         print("Phase one Ended")
-        start_time = time.time()
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
+        start_time = timeit.default_timer()
         while True:
             count += 1
             num_request = next(trace_iter)
@@ -149,13 +151,17 @@ class a2_client():
             reqs = self.request_generator(count,num_request)
             await self.dispatch_requests(reqs) #ginger
 
+
             if count == len(self.trace_data):
                 while len(self.req_history.keys()) != self.total_req_number:
                     # unbuffered_print(len(self.req_history.keys()),self.total_req_number)
                     pass
 
                 # Communication
+                end_time = timeit.default_timer()
+                self.complete_time = end_time - start_time
                 unbuffered_print("Send to Controller & Wait settings")
+
                 await self.send_to_controller()
 
                 unbuffered_print("Restart Client")
@@ -271,6 +277,8 @@ class a2_client():
         message["latency_limit"] = self.lat_lim
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
+        message["complete_time"] = self.complete_time
+        message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
