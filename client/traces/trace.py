@@ -22,7 +22,7 @@ def region():
 def content():
     trace_lst = []
 
-    for num in range(6):
+    for num in range(8):
         for region in os.listdir(PATH):
             if region.startswith('re'):
                 path = os.path.join(PATH,region)
@@ -32,7 +32,7 @@ def content():
                 trace_lst.append(np.load(content_path)[:60])
         trace[num] = (trace_lst)
         trace_lst = []
-    # print(trace)
+    print(trace)
     return trace
 # content()
 
@@ -49,4 +49,5 @@ def gen_trace():
 
 
 
-gen_trace()
+# gen_trace()
+content()

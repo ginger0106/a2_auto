@@ -45,8 +45,9 @@ class tf_serving_cls():
         # print(timeit.default_timer)
         async with session.post (SERVER_URL, data=predict_request) as response:
             # response
-            prediction = await response.text()
-        prediction = (json.loads(prediction)['results'][0])
+            if response.status == 200:
+                prediction = await response.text()
+            prediction = (json.loads(prediction)['results'][0])
         # print(prediction)
         # print(response.status_code)
         #     response.raise_for_status ()
