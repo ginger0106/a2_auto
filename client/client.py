@@ -123,9 +123,9 @@ class a2_client():
             }
 
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**256)
+          self.ctrl_addr, self.ctrl_port,limit=2**128)
         # unbuffered_print("111111111111111")
-        await self.dict_tool.send_dict2bytes (message, writer)
+        await self.dict_tool.send_dict2bytes (miessage, writer)
         # unbuffered_print(444444)
         unbuffered_print("Sent Phase one to controller")
 
@@ -277,12 +277,12 @@ class a2_client():
         message["latency_limit"] = self.lat_lim
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
-        message["complete_time"] = self.complete_time
+       # message["complete_time"] = self.complete_time
         message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**256)
+          self.ctrl_addr, self.ctrl_port,limit=2**128)
 
         await self.dict_tool.send_dict2bytes (message, writer)
         unbuffered_print("Sent to controller")
