@@ -123,7 +123,7 @@ class a2_client():
             }
 
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**64)
+          self.ctrl_addr, self.ctrl_port,limit=2**256)
         # unbuffered_print("111111111111111")
         await self.dict_tool.send_dict2bytes (message, writer)
         # unbuffered_print(444444)
@@ -282,7 +282,7 @@ class a2_client():
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**64)
+          self.ctrl_addr, self.ctrl_port,limit=2**256)
 
         await self.dict_tool.send_dict2bytes (message, writer)
         unbuffered_print("Sent to controller")
