@@ -125,7 +125,7 @@ class a2_client():
         reader, writer = await asyncio.open_connection(
           self.ctrl_addr, self.ctrl_port,limit=2**128)
         # unbuffered_print("111111111111111")
-        await self.dict_tool.send_dict2bytes (miessage, writer)
+        await self.dict_tool.send_dict2bytes (message, writer)
         # unbuffered_print(444444)
         unbuffered_print("Sent Phase one to controller")
 
