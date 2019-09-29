@@ -281,7 +281,7 @@ class a2_client():
         message["latency_limit"] = self.lat_lim
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
-        message["complete_time"] = self.complete_time
+       # message["complete_time"] = self.complete_time
         message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
