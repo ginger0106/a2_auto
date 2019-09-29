@@ -33,7 +33,7 @@ class tf_serving_cls():
         # im.save (image_io, 'JPEG')
         # byte_data = image_io.getvalue ()
         # image_bytes = base64.b64encode (byte_data).decode ('utf-8')
-        return image_bytes
+        # return image_bytes
 
     async def tf_serving_request(self, decision_dict,req_recorder,session):
         # print(decision_dict)
