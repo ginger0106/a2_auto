@@ -47,6 +47,7 @@ class tf_serving_cls():
         r_time = time.time()
         batch = config["batch"]
         count = 0
+        status = 'none'
         unbuffered_print("Sending request: %s"%decision_dict["id"])
         while count <= 9:
             try:
@@ -57,17 +58,19 @@ class tf_serving_cls():
                 # response = requests.post(SERVER_URL, data=predict_request)
                 # response.raise_for_status ()
                 # prediction = response.json ()['results'][0]
-                try:
-                    start_time = timeit.default_timer ()
-                    async with session.post (SERVER_URL, data=predict_request) as response:
-                        # response
-                        if response.status ==200:
-                            await response.text ()
-                            unbuffered_print('OK! 200')
-                        else:
-                            unbuffered_print(response.status)
-                except Exception:
-                    unbuffered_print(Exception)
+                # try:
+                start_time = timeit.default_timer ()
+                async with session.post (SERVER_URL, data=predict_request) as response:
+                    # response
+                    if response.status ==200:
+                        await response.text ()
+                        unbuffered_print('OK! 200')
+                        status = response.status
+                    else:
+                        unbuffered_print(response.status)
+                        status = response.status
+                # except Exception:
+                #     unbuffered_print(Exception)
 
                 # try:
                 #     unbuffered_print (1111)
@@ -91,7 +94,7 @@ class tf_serving_cls():
                 # temp[""]
                 req_recorder[decision_dict["id"]] = temp
                 unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
-                return
+                return status
 
             except Exception as e:
                 traces = traceback.format_exc()
