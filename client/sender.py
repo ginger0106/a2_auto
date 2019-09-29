@@ -64,16 +64,17 @@ class tf_serving_cls():
         # prediction = response.json ()['results'][0]
         # try:
         start_time = timeit.default_timer ()
-        async with session.post (SERVER_URL, data=predict_request) as response:
-            # response
-            if response.status ==200:
-                await response.text ()
-                unbuffered_print('OK! 200')
-                status = 'ok'
-            else:
-                await asyncio.sleep(0.001)
-                unbuffered_print(response.status)
-                status = response.status
+        await asyncio.sleep(0.5)
+        # async with session.post (SERVER_URL, data=predict_request) as response:
+        #     # response
+        #     if response.status ==200:
+        #         await response.text ()
+        #         unbuffered_print('OK! 200')
+        #         status = 'ok'
+        #     else:
+        #         await asyncio.sleep(0.001)
+        #         unbuffered_print(response.status)
+        #         status = response.status
 
         # except Exception:
         #     unbuffered_print(Exception)
