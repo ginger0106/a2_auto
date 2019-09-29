@@ -226,7 +226,7 @@ class a2_client():
         #     # unbuffered_print(item["id"])
         #     lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
         lst = [self.tf_proxy.tf_serving_request(item, self.req_history,session) for item in reqs]
-        unbuffered_print(f'333333333,{len(lst)}')
+        # unbuffered_print(f'333333333,{len(lst)}')
         result = await asyncio.gather(*lst)
         unbuffered_print(result)
         # for item in reqs:
