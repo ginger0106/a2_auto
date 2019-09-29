@@ -143,7 +143,7 @@ class a2_client():
         print("Phase one Ended")
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
-        start_time = timeit.default_timer()
+        # start_time = timeit.default_timer()
         async with aiohttp.ClientSession() as session:
 
             while True:
@@ -162,7 +162,7 @@ class a2_client():
 
                     # Communication
                     end_time = timeit.default_timer()
-                    self.complete_time = end_time - start_time
+                    # self.complete_time = end_time - start_time
                     unbuffered_print("Send to Controller & Wait settings")
 
                     await self.send_to_controller()
@@ -222,10 +222,12 @@ class a2_client():
         # unbuffered_print(234352435243)
         # async with aiohttp.ClientSession () as session:
         unbuffered_print([item["id"] for item in reqs])
-        for item in reqs:
-            unbuffered_print(item["id"])
-            lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
-        await asyncio.gather (*lst)
+        # for item in reqs:
+        #     # unbuffered_print(item["id"])
+        #     lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
+        lst = [self.tf_proxy.tf_serving_request(item, self.req_history,session) for item in reqs]
+        unbuffered_print(len(lst))
+        await asyncio.gather(*lst)
         # for item in reqs:
             # self.tf_proxy.tf_serving_request(item, self.req_history)
             # _thread.start_new_thread(self.tf_proxy.tf_serving_request,(item,self.req_history))
@@ -283,7 +285,7 @@ class a2_client():
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
        # message["complete_time"] = self.complete_time
-        message["throughput"] = len(self.trace_data)/self.complete_time
+       #  message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
