@@ -148,7 +148,7 @@ class a2_client():
         print("Phase one Ended")
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
-        # start_time = timeit.default_timer()
+        start_time = timeit.default_timer()
         # session = 0
 
         while True:
@@ -156,6 +156,7 @@ class a2_client():
             num_request = next(trace_iter)
             unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
             reqs = self.request_generator(count,num_request)
+            start_time = timeit.default_timer()
             async with aiohttp.ClientSession() as session:
             # session = 0
                 await self.dispatch_requests(reqs,session) #ginger
@@ -168,7 +169,7 @@ class a2_client():
 
                 # Communication
                 end_time = timeit.default_timer()
-                # self.complete_time = end_time - start_time
+                self.complete_time = end_time - start_time
                 unbuffered_print("Send to Controller & Wait settings")
 
                 await self.send_to_controller()
@@ -291,8 +292,8 @@ class a2_client():
         message["latency_limit"] = self.lat_lim
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
-       # message["complete_time"] = self.complete_time
-       #  message["throughput"] = len(self.trace_data)/self.complete_time
+        message["complete_time"] = self.complete_time
+        message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
