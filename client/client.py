@@ -123,7 +123,7 @@ class a2_client():
             }
 
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**256)
+          self.ctrl_addr, self.ctrl_port,limit=2**128)
         # unbuffered_print("111111111111111")
         await self.dict_tool.send_dict2bytes (message, writer)
         # unbuffered_print(444444)
@@ -144,35 +144,38 @@ class a2_client():
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
         start_time = timeit.default_timer()
-        while True:
-            count += 1
-            num_request = next(trace_iter)
-            unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
-            reqs = self.request_generator(count,num_request)
-            await self.dispatch_requests(reqs) #ginger
+        async with aiohttp.ClientSession() as session:
+
+            while True:
+                count += 1
+                num_request = next(trace_iter)
+                unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
+                reqs = self.request_generator(count,num_request)
+
+                await self.dispatch_requests(reqs,session) #ginger
 
 
-            if count == len(self.trace_data):
-                while len(self.req_history.keys()) != self.total_req_number:
-                    # unbuffered_print(len(self.req_history.keys()),self.total_req_number)
-                    pass
+                if count == len(self.trace_data):
+                    while len(self.req_history.keys()) != self.total_req_number:
+                        # unbuffered_print(len(self.req_history.keys()),self.total_req_number)
+                        pass
 
-                # Communication
-                end_time = timeit.default_timer()
-                self.complete_time = end_time - start_time
-                unbuffered_print("Send to Controller & Wait settings")
+                    # Communication
+                    end_time = timeit.default_timer()
+                    self.complete_time = end_time - start_time
+                    unbuffered_print("Send to Controller & Wait settings")
 
-                await self.send_to_controller()
+                    await self.send_to_controller()
 
-                unbuffered_print("Restart Client")
-                time.sleep(3)
+                    unbuffered_print("Restart Client")
+                    time.sleep(3)
 
-                count = 0
-                self.total_req_number = 0
-                self.req_history = {}
-            else:
-                # unbuffered_print("Server sleep %s Secs"%1)
-                time.sleep(1)
+                    count = 0
+                    self.total_req_number = 0
+                    self.req_history = {}
+                else:
+                    # unbuffered_print("Server sleep %s Secs"%1)
+                    time.sleep(1)
 
 
 
@@ -213,14 +216,15 @@ class a2_client():
         return request_list
 
 
-    async def dispatch_requests(self,reqs): #ginger
+    async def dispatch_requests(self,reqs,session): #ginger
         lst = []
         # cls = tf_serving_cls ()
         # unbuffered_print(234352435243)
-        async with aiohttp.ClientSession () as session:
-            for item in reqs:
-                lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
-            await asyncio.gather (*lst)
+        # async with aiohttp.ClientSession () as session:
+        for item in reqs:
+            # print()
+            lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
+        await asyncio.gather (*lst)
         # for item in reqs:
             # self.tf_proxy.tf_serving_request(item, self.req_history)
             # _thread.start_new_thread(self.tf_proxy.tf_serving_request,(item,self.req_history))
@@ -282,7 +286,7 @@ class a2_client():
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
-          self.ctrl_addr, self.ctrl_port,limit=2**256)
+          self.ctrl_addr, self.ctrl_port,limit=2**128)
 
         await self.dict_tool.send_dict2bytes (message, writer)
         unbuffered_print("Sent to controller")
