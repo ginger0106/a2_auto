@@ -49,53 +49,53 @@ class tf_serving_cls():
         count = 0
         status = 'none'
         unbuffered_print("Sending request: %s"%decision_dict["id"])
-        while count <= 9:
-            try:
+        # while count <= 9:
+        #     try:
                 # unbuffered_print("Sending Requests for %s times"%count)
-                SERVER_URL = url
-                image_bytes = self.data_preprocess (self.image_path, data_version)
-                predict_request = '{"signature_name":"serving_default" ,"examples":[{"image/encoded":{"b64": "%s"}}]}' % image_bytes
-                # response = requests.post(SERVER_URL, data=predict_request)
-                # response.raise_for_status ()
-                # prediction = response.json ()['results'][0]
-                # try:
-                start_time = timeit.default_timer ()
-                async with session.post (SERVER_URL, data=predict_request) as response:
-                    # response
-                    if response.status ==200:
-                        await response.text ()
-                        unbuffered_print('OK! 200')
-                        status = response.status
-                    else:
-                        await asyncio.sleep(0.001)
-                        unbuffered_print(response.status)
-                        status = response.status
-                # except Exception:
-                #     unbuffered_print(Exception)
+        SERVER_URL = url
+        image_bytes = self.data_preprocess (self.image_path, data_version)
+        predict_request = '{"signature_name":"serving_default" ,"examples":[{"image/encoded":{"b64": "%s"}}]}' % image_bytes
+        # response = requests.post(SERVER_URL, data=predict_request)
+        # response.raise_for_status ()
+        # prediction = response.json ()['results'][0]
+        # try:
+        start_time = timeit.default_timer ()
+        async with session.post (SERVER_URL, data=predict_request) as response:
+            # response
+            if response.status ==200:
+                await response.text ()
+                unbuffered_print('OK! 200')
+                status = response.status
+            else:
+                await asyncio.sleep(0.001)
+                unbuffered_print(response.status)
+                status = response.status
+        # except Exception:
+        #     unbuffered_print(Exception)
 
-                end_time = timeit.default_timer ()
-                latency = end_time-start_time
+            end_time = timeit.default_timer ()
+            latency = end_time-start_time
 
-                temp = {}
-                temp["real_latency"] = latency
-                temp["url"] = SERVER_URL
-                temp["model_ver"] = model_version
-                temp["data_ver"] = data_version
-                temp["time"] = r_time
-                temp["batch"] = batch
-                # temp[""]
-                req_recorder[decision_dict["id"]] = temp
-                unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
-                return status
+            temp = {}
+            temp["real_latency"] = latency
+            temp["url"] = SERVER_URL
+            temp["model_ver"] = model_version
+            temp["data_ver"] = data_version
+            temp["time"] = r_time
+            temp["batch"] = batch
+            # temp[""]
+            req_recorder[decision_dict["id"]] = temp
+            unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
+            return status
 
-            except Exception as e:
-                traces = traceback.format_exc()
-                time.sleep(1)
-                count += 1
-
-                with open("/tmp/client_error.log","a") as f:
-                    f.writelines([str(traces),str(e)])
-                    f.close()
+            # except Exception as e:
+            #     traces = traceback.format_exc()
+            #     time.sleep(1)
+            #     count += 1
+            #
+            #     with open("/tmp/client_error.log","a") as f:
+            #         f.writelines([str(traces),str(e)])
+            #         f.close()
 
 
         # latency = 0.1*10
