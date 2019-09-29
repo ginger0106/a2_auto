@@ -58,20 +58,25 @@ class tf_serving_cls():
                 SERVER_URL = url
                 image_bytes = self.data_preprocess (self.image_path, data_version)
                 predict_request = '{"signature_name":"serving_default" ,"examples":[{"image/encoded":{"b64": "%s"}}]}' % image_bytes
+
+                start_time = timeit.default_timer ()
+
+                await asyncio.sleep(0.5)
+
                 # response = requests.post(SERVER_URL, data=predict_request)
                 # response.raise_for_status ()
                 # prediction = response.json ()['results'][0]
-                try:
-                    start_time = timeit.default_timer ()
-                    async with session.post (SERVER_URL, data=predict_request) as response:
-                        # response
-                        if response.status ==200:
-                            await response.text ()
-                            unbuffered_print('OK! 200')
-                        else:
-                            unbuffered_print(response.status)
-                except Exception:
-                    unbuffered_print(Exception)
+                # try:
+                #     start_time = timeit.default_timer ()
+                #     async with session.post (SERVER_URL, data=predict_request) as response:
+                #         # response
+                #         if response.status ==200:
+                #             await response.text ()
+                #             unbuffered_print('OK! 200')
+                #         else:
+                #             unbuffered_print(response.status)
+                # except Exception:
+                #     unbuffered_print(Exception)
 
                 # try:
                 #     unbuffered_print (1111)
