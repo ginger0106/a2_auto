@@ -156,9 +156,9 @@ class a2_client():
             num_request = next(trace_iter)
             unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
             reqs = self.request_generator(count,num_request)
-            # async with aiohttp.ClientSession() as session:
-            session = 0
-            await self.dispatch_requests(reqs,session) #ginger
+            async with aiohttp.ClientSession() as session:
+            # session = 0
+                await self.dispatch_requests(reqs,session) #ginger
 
 
             if count == len(self.trace_data):

@@ -28,9 +28,9 @@ class tf_serving_cls():
         size = int (224 - data_version * 12)
         data_size = (size, size)
         # im = Image.open (data_path)
-        image = im.resize (data_size, Image.ANTIALIAS)
+        # image = im.resize (data_size, Image.ANTIALIAS)
         image_io = BytesIO ()
-        image.save (image_io, 'JPEG')
+        im.save (image_io, 'JPEG')
         byte_data = image_io.getvalue ()
         image_bytes = base64.b64encode (byte_data).decode ('utf-8')
         return image_bytes
