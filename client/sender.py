@@ -71,6 +71,7 @@ class tf_serving_cls():
                 unbuffered_print('OK! 200')
                 status = 'ok'
             else:
+                await asyncio.sleep(0.001)
                 unbuffered_print(response.status)
                 status = response.status
 
