@@ -73,20 +73,20 @@ class tf_serving_cls():
         # except Exception:
         #     unbuffered_print(Exception)
 
-            end_time = timeit.default_timer ()
-            latency = end_time-start_time
+        end_time = timeit.default_timer ()
+        latency = end_time-start_time
 
-            temp = {}
-            temp["real_latency"] = latency
-            temp["url"] = SERVER_URL
-            temp["model_ver"] = model_version
-            temp["data_ver"] = data_version
-            temp["time"] = r_time
-            temp["batch"] = batch
-            # temp[""]
-            req_recorder[decision_dict["id"]] = temp
-            unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
-            return status
+        temp = {}
+        temp["real_latency"] = latency
+        temp["url"] = SERVER_URL
+        temp["model_ver"] = model_version
+        temp["data_ver"] = data_version
+        temp["time"] = r_time
+        temp["batch"] = batch
+        # temp[""]
+        req_recorder[decision_dict["id"]] = temp
+        unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
+        return status
 
             # except Exception as e:
             #     traces = traceback.format_exc()
