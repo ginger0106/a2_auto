@@ -52,6 +52,8 @@ class tf_serving_cls():
         unbuffered_print(f'!!!!!!!!!! count is {count}')
         while count <= 9:
             try:
+                unbuffered_print("!!!!! Sending request: %s" % decision_dict["id"])
+
                 # unbuffered_print("Sending Requests for %s times"%count)
                 SERVER_URL = url
                 image_bytes = self.data_preprocess (self.image_path, data_version)
