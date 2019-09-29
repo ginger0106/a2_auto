@@ -49,6 +49,7 @@ class tf_serving_cls():
         batch = config["batch"]
         count = 0
         unbuffered_print("Sending request: %s"%decision_dict["id"])
+        unbuffered_print(f'!!!!!!!!!! count is {count}')
         while count <= 9:
             try:
                 # unbuffered_print("Sending Requests for %s times"%count)
