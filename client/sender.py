@@ -29,10 +29,10 @@ class tf_serving_cls():
         data_size = (size, size)
         im = Image.open (data_path)
         im = im.resize (data_size, Image.ANTIALIAS)
-        image_io = BytesIO ()
-        im.save (image_io, 'JPEG')
-        byte_data = image_io.getvalue ()
-        image_bytes = base64.b64encode (byte_data).decode ('utf-8')
+        # image_io = BytesIO ()
+        # im.save (image_io, 'JPEG')
+        # byte_data = image_io.getvalue ()
+        # image_bytes = base64.b64encode (byte_data).decode ('utf-8')
         return image_bytes
 
     async def tf_serving_request(self, decision_dict,req_recorder,session):
