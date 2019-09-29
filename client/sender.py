@@ -95,7 +95,7 @@ class tf_serving_cls():
                 # temp[""]
                 req_recorder[decision_dict["id"]] = temp
                 unbuffered_print('Request: %s Prediction class: %s, avg latency: %.2f ms'%(decision_dict["id"], 'cat',latency*1000))
-                # return
+                return "ok"
 
             except Exception as e:
                 traces = traceback.format_exc()
