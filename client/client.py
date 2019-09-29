@@ -221,8 +221,9 @@ class a2_client():
         # cls = tf_serving_cls ()
         # unbuffered_print(234352435243)
         # async with aiohttp.ClientSession () as session:
+        unbuffered_print([item["id"] for item in reqs])
         for item in reqs:
-            # print()
+            unbuffered_print(item["id"])
             lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
         await asyncio.gather (*lst)
         # for item in reqs:
