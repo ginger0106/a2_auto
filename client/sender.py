@@ -28,7 +28,7 @@ class tf_serving_cls():
         size = int (224 - data_version * 12)
         data_size = (size, size)
         im = Image.open (data_path)
-        im = im.resize (data_size, Image.ANTIALIAS)
+        # im = im.resize (data_size, Image.ANTIALIAS)
         # image_io = BytesIO ()
         # im.save (image_io, 'JPEG')
         # byte_data = image_io.getvalue ()
