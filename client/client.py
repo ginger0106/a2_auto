@@ -16,6 +16,8 @@ import itertools
 import traceback
 import aiohttp
 import timeit
+from PIL import Image
+
 
 # from .model import *
 # from .measurement import *
@@ -68,6 +70,9 @@ class a2_client():
         self.lat_lim = float(lat_lim)
         self.comm_interval = int(comm_interval)
         self.complete_time = 0
+        self.image_path = PATH + 'a2_auto/client/cat.jpg'
+        self.im = Image.open (self.image_path)
+
 
         trace_data = None
         try:
@@ -226,7 +231,7 @@ class a2_client():
         # for item in reqs:
         #     # unbuffered_print(item["id"])
         #     lst.append (self.tf_proxy.tf_serving_request(item, self.req_history,session))
-        lst = [self.tf_proxy.tf_serving_request(item, self.req_history,session) for item in reqs]
+        lst = [self.tf_proxy.tf_serving_request(item, self.req_history,session,self.im) for item in reqs]
         # unbuffered_print(f'333333333,{len(lst)}')
         result = await asyncio.gather(*lst)
         unbuffered_print(result)
