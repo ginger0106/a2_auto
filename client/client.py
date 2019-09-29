@@ -144,39 +144,39 @@ class a2_client():
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
         # start_time = timeit.default_timer()
-        async with aiohttp.ClientSession() as session:
         # session = 0
 
-            while True:
-                count += 1
-                num_request = next(trace_iter)
-                unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
-                reqs = self.request_generator(count,num_request)
+        while True:
+            count += 1
+            num_request = next(trace_iter)
+            unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
+            reqs = self.request_generator(count,num_request)
+            async with aiohttp.ClientSession() as session:
 
                 await self.dispatch_requests(reqs,session) #ginger
 
 
-                if count == len(self.trace_data):
-                    while len(self.req_history.keys()) != self.total_req_number:
-                        # unbuffered_print(len(self.req_history.keys()),self.total_req_number)
-                        pass
+            if count == len(self.trace_data):
+                while len(self.req_history.keys()) != self.total_req_number:
+                    # unbuffered_print(len(self.req_history.keys()),self.total_req_number)
+                    pass
 
-                    # Communication
-                    end_time = timeit.default_timer()
-                    # self.complete_time = end_time - start_time
-                    unbuffered_print("Send to Controller & Wait settings")
+                # Communication
+                end_time = timeit.default_timer()
+                # self.complete_time = end_time - start_time
+                unbuffered_print("Send to Controller & Wait settings")
 
-                    await self.send_to_controller()
+                await self.send_to_controller()
 
-                    unbuffered_print("Restart Client")
-                    time.sleep(3)
+                unbuffered_print("Restart Client")
+                time.sleep(3)
 
-                    count = 0
-                    self.total_req_number = 0
-                    self.req_history = {}
-                else:
-                    # unbuffered_print("Server sleep %s Secs"%1)
-                    time.sleep(1)
+                count = 0
+                self.total_req_number = 0
+                self.req_history = {}
+            else:
+                # unbuffered_print("Server sleep %s Secs"%1)
+                time.sleep(1)
 
 
 

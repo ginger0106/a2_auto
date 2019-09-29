@@ -67,19 +67,11 @@ class tf_serving_cls():
                         unbuffered_print('OK! 200')
                         status = response.status
                     else:
+                        await asyncio.sleep(0.001)
                         unbuffered_print(response.status)
                         status = response.status
                 # except Exception:
                 #     unbuffered_print(Exception)
-
-                # try:
-                #     unbuffered_print (1111)
-                #     unbuffered_print (prediction)
-                #     # prediction = (json.loads (prediction)['results'][0])
-                # except KeyError:
-                #     unbuffered_print (2222)
-                #     unbuffered_print (prediction)
-                #     await asyncio.sleep(0.5)
 
                 end_time = timeit.default_timer ()
                 latency = end_time-start_time
