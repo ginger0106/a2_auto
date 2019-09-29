@@ -28,9 +28,9 @@ class tf_serving_cls():
         size = int (224 - data_version * 12)
         data_size = (size, size)
         # im = Image.open (data_path)
-        im = im.resize (data_size, Image.ANTIALIAS)
+        image = im.resize (data_size, Image.ANTIALIAS)
         image_io = BytesIO ()
-        im.save (image_io, 'JPEG')
+        image.save (image_io, 'JPEG')
         byte_data = image_io.getvalue ()
         image_bytes = base64.b64encode (byte_data).decode ('utf-8')
         return image_bytes
@@ -53,7 +53,7 @@ class tf_serving_cls():
             try:
                 # unbuffered_print("Sending Requests for %s times"%count)
                 SERVER_URL = url
-                image_bytes = self.data_preprocess (self.image_path, data_version)
+                image_bytes = self.data_preprocess (self.image_path, data_version,im)
                 # predict_request = '{"signature_name":"serving_default" ,"examples":[{"image/encoded":{"b64": "%s"}}]}' % image_bytes
                 # response = requests.post(SERVER_URL, data=predict_request)
                 # response.raise_for_status ()
