@@ -158,10 +158,10 @@ class a2_client():
             unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
             reqs = self.request_generator(count,num_request)
             start_time = timeit.default_timer()
-            # async with aiohttp.ClientSession() as session:
-            # # session = 0
-            #     await self.dispatch_requests(reqs,session) #ginger
-            await asyncio.gather(*[self.dispatch(reqs),self.cal_bw_utilization()])
+            async with aiohttp.ClientSession() as session:
+             # session = 0
+                 await self.dispatch_requests(reqs,session) #ginger
+            #await asyncio.gather(*[self.dispatch(reqs),self.cal_bw_utilization()])
 
             if count == len(self.trace_data):
                 while len(self.req_history.keys()) != self.total_req_number:
@@ -335,7 +335,7 @@ class a2_client():
     async def main(self):
         self.allocate_done_que = asyncio.Queue ()
         self.allocat_que = asyncio.Queue()
-        await asyncio.gather(self.client_core())
+        await asyncio.gather(*[self.client_core(),self.cal_bw_utilization()])
 
 
     # def delete_cpu0_docker(self):
