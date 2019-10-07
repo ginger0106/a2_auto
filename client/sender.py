@@ -44,7 +44,7 @@ class tf_serving_cls():
         url = random.sample(config["urls"],1)[0]
         # r_time = config['time']
         # r
-        r_time = time.time()
+        # r_time = time.time()
         batch = config["batch"]
         count = 0
         status = 'none'
@@ -72,8 +72,9 @@ class tf_serving_cls():
                         unbuffered_print(response.status)
                         status = response.status
                 # except Exception:
-                #     unbuffered_print(Exception)
 
+
+                r_time = time.time()
                 end_time = timeit.default_timer ()
                 latency = end_time-start_time
 
