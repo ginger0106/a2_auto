@@ -134,15 +134,15 @@ def cmd_all(hosts):
             "type": "cmd",
             "cmd": sh_cmd
         }
-    for region_id  in range(len(hosts)):
-        region_ip_dict = hosts["region_%s"%region_id]
-        for role,ip in region_ip_dict.items():
-        #    print("Enter region id and role:")
-       #     ip = hosts["region_%s"%region_id][role]
+        for region_id  in range(len(hosts)):
+            region_ip_dict = hosts["region_%s"%region_id]
+            for role,ip in region_ip_dict.items():
+            #    print("Enter region id and role:")
+           #     ip = hosts["region_%s"%region_id][role]
 
 
-            asyncio.run(sendmsg(ip,20020,cmd_dict))
-          #  sh_cmd = input()
+                asyncio.run(sendmsg(ip,20020,cmd_dict))
+        sh_cmd = input()
 
 
 def status_all(hosts):
