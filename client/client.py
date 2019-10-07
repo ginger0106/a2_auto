@@ -335,7 +335,7 @@ class a2_client():
     async def main(self):
         self.allocate_done_que = asyncio.Queue ()
         self.allocat_que = asyncio.Queue()
-        await asyncio.gather(*[self.client_core(),self.cal_bw_utilization()])
+        await asyncio.gather(*[self.client_core()])
 
 
     # def delete_cpu0_docker(self):
