@@ -146,6 +146,7 @@ class a2_client():
 
     async def client_core(self):
         await self.phase_one()
+        self.bw_uti = []
         print("Phase one Ended")
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
