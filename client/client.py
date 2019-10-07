@@ -359,6 +359,6 @@ if __name__ == "__main__":
         traces = traceback.format_exc()
         unbuffered_print(str(traces))
 
-        with open("/tmp/client_error.log","a") as f:
+        with open("/tmp/client.log","a") as f:
             f.writelines([str(traces),str(e)])
             f.close()
