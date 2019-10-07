@@ -72,7 +72,6 @@ class a2_client():
         self.complete_time = 0
         self.image_path = PATH + 'a2_auto/client/cat.jpg'
         self.im = Image.open (self.image_path)
-        self.bw_uti = []
 
 
         trace_data = None
@@ -149,7 +148,7 @@ class a2_client():
         print("Phase one Ended")
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
-        start_time = timeit.default_timer()
+        # start_time = timeit.default_timer()
         # session = 0
 
         while True:
@@ -157,11 +156,10 @@ class a2_client():
             num_request = next(trace_iter)
             unbuffered_print("%s Requests generated at %s, total: %s"%(num_request,get_time(),self.total_req_number))
             reqs = self.request_generator(count,num_request)
-            start_time = timeit.default_timer()
             async with aiohttp.ClientSession() as session:
-             # session = 0
-                 await self.dispatch_requests(reqs,session) #ginger
-            #await asyncio.gather(*[self.dispatch(reqs),self.cal_bw_utilization()])
+            # session = 0
+                await self.dispatch_requests(reqs,session) #ginger
+
 
             if count == len(self.trace_data):
                 while len(self.req_history.keys()) != self.total_req_number:
@@ -170,11 +168,10 @@ class a2_client():
 
                 # Communication
                 end_time = timeit.default_timer()
-                self.complete_time = end_time - start_time
+                # self.complete_time = end_time - start_time
                 unbuffered_print("Send to Controller & Wait settings")
 
                 await self.send_to_controller()
-                self.bw_uti = []
 
                 unbuffered_print("Restart Client")
                 time.sleep(3)
@@ -186,28 +183,6 @@ class a2_client():
                 # unbuffered_print("Server sleep %s Secs"%1)
                 time.sleep(1)
 
-    def dispatch(self,reqs):
-        async with aiohttp.ClientSession() as session:
-            await self.dispatch_requests(reqs, session)  # ginger
-
-
-    # def cal_bw_utilization(self):
-    async def cal_bw_utilization(self):
-        cmd = "sudo nethogs -t -d 2 ens5"
-        s = await asyncio.create_subprocess_shell(
-            cmd,
-            stdout=asyncio.subprocess.PIPE,stderr=asyncio.subprocess.PIPE)
-
-        while True:
-            sout = await s.stdout.readline()
-            bw_uti = bytes.decode(sout)
-            # serr = await s.stderr.readline()
-            if 'sshd' in bw_uti:
-                input_bw = str(bw_uti).split()[1]
-                output_bw = str(bw_uti).split()[2]
-                self.bw_uti.append([input_bw, output_bw, time.time()])
-            if sout == '' and s.poll() != None:
-                break
 
 
     def config_generator(self):
@@ -316,9 +291,8 @@ class a2_client():
         message["latency_limit"] = self.lat_lim
         message["requests"] = self.req_history
         message["model_name"] = self.model_name
-        message["complete_time"] = self.complete_time
-        message["throughput"] = len(self.trace_data)/self.complete_time
-        message["bw_uti"] = self.bw_uti
+       # message["complete_time"] = self.complete_time
+       #  message["throughput"] = len(self.trace_data)/self.complete_time
 
         # unbuffered_print(message)
         reader, writer = await asyncio.open_connection(
@@ -356,6 +330,7 @@ if __name__ == "__main__":
 
     except Exception as e:
         traces = traceback.format_exc()
+        unbuffered_print(str(traces),str(e))
 
         with open("/tmp/client_error.log","a") as f:
             f.writelines([str(traces),str(e)])
