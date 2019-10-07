@@ -202,7 +202,7 @@ class a2_client():
             sout = await s.stdout.readline()
             bw_uti = bytes.decode(sout)
             # serr = await s.stderr.readline()
-            if 'client' in bw_uti:
+            if 'sshd' in bw_uti:
                 input_bw = str(bw_uti).split()[1]
                 output_bw = str(bw_uti).split()[2]
                 self.bw_uti.append([input_bw, output_bw, time.time()])
