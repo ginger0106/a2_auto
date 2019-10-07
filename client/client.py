@@ -192,7 +192,7 @@ class a2_client():
 
 
     # def cal_bw_utilization(self):
-    '''
+
     
    
     async def cal_bw_utilization(self):
@@ -200,19 +200,18 @@ class a2_client():
         pid = os.getppid()
         s = await asyncio.create_subprocess_shell(
             cmd,
-            stdout=asyncio.subprocess.PIPE,stderr=asyncio.subprocess.PIPE)
+            stdout=asyncio.subprocess.PIPE)
 
         while True:
             sout = await s.stdout.readline()
             bw_uti = bytes.decode(sout)
-            # serr = await s.stderr.readline()
             if str(pid) in bw_uti:
                 input_bw = str(bw_uti).split()[1]
                 output_bw = str(bw_uti).split()[2]
                 self.bw_uti.append([input_bw, output_bw, time.time()])
             if sout == '' and s.poll() != None:
                 break
-                 '''
+
 
 
     def config_generator(self):
@@ -340,7 +339,7 @@ class a2_client():
     async def main(self):
         self.allocate_done_que = asyncio.Queue ()
         self.allocat_que = asyncio.Queue()
-        await asyncio.gather(self.client_core())
+        await asyncio.gather(*[self.client_core(),self.cal_bw_utilization()])
 
 
     # def delete_cpu0_docker(self):
