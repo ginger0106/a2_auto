@@ -149,7 +149,7 @@ class a2_client():
         print("Phase one Ended")
         trace_iter = itertools.cycle(self.trace_data)
         count = 0
-        start_time = timeit.default_timer()
+        #start_time = timeit.default_timer()
         # session = 0
 
         while True:
@@ -186,12 +186,15 @@ class a2_client():
                 # unbuffered_print("Server sleep %s Secs"%1)
                 time.sleep(1)
 
-    def dispatch(self,reqs):
-        async with aiohttp.ClientSession() as session:
-            await self.dispatch_requests(reqs, session)  # ginger
+  #  def dispatch(self,reqs):
+   #     async with aiohttp.ClientSession() as session:
+    #        await self.dispatch_requests(reqs, session)  # ginger
 
 
     # def cal_bw_utilization(self):
+    '''
+    
+   
     async def cal_bw_utilization(self):
         cmd = "sudo nethogs -t -d 2 ens5"
         pid = os.getppid()
@@ -209,6 +212,7 @@ class a2_client():
                 self.bw_uti.append([input_bw, output_bw, time.time()])
             if sout == '' and s.poll() != None:
                 break
+                 '''
 
 
     def config_generator(self):
