@@ -137,7 +137,7 @@ def cmd_all(hosts):
         for region_id  in range(len(hosts)):
             region_ip_dict = hosts["region_%s"%region_id]
             for role,ip in region_ip_dict.items():
-            #    print("Enter region id and role:")
+                print(f"region id {region_id} and role{role}:")
            #     ip = hosts["region_%s"%region_id][role]
 
 
