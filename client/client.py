@@ -330,7 +330,7 @@ if __name__ == "__main__":
 
     except Exception as e:
         traces = traceback.format_exc()
-        unbuffered_print(str(traces),str(e))
+        unbuffered_print(str(traces))
 
         with open("/tmp/client_error.log","a") as f:
             f.writelines([str(traces),str(e)])
