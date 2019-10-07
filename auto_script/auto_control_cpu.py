@@ -125,22 +125,24 @@ def pull_all(hosts):
             asyncio.run(sendmsg(ip,20020,pull_dict))
 
 def cmd_all(hosts):
-    for region_id   in range(len(hosts)):
+    cmd_dict = {}
+    print("CMD Mode (exit):")
+    sh_cmd = input()
+    print("cmd is: %s" % sh_cmd)
+    while sh_cmd != "exit":
+        cmd_dict = {
+            "type": "cmd",
+            "cmd": sh_cmd
+        }
+    for region_id  in range(len(hosts)):
         region_ip_dict = hosts["region_%s"%region_id]
         for role,ip in region_ip_dict.items():
-            print("Enter region id and role:")
-            ip = hosts["region_%s"%region_id][role]
+        #    print("Enter region id and role:")
+       #     ip = hosts["region_%s"%region_id][role]
 
-            print("CMD Mode (exit):")
-            sh_cmd = input()
-            print("cmd is: %s"%sh_cmd)
-            while sh_cmd != "exit":
-                cmd_dict = {
-                    "type":"cmd",
-                    "cmd":sh_cmd
-                }
-                asyncio.run(sendmsg(ip,20020,cmd_dict))
-                sh_cmd = input()
+
+            asyncio.run(sendmsg(ip,20020,cmd_dict))
+          #  sh_cmd = input()
 
 
 def status_all(hosts):
@@ -491,7 +493,7 @@ if __name__ == "__main__":
             status_all(hosts)
         elif command == "activate":
             activate_hosts(hosts)
-        elif command=="cmd":
+        elif command == "cmd":
             print("Enter region id and role:")
             [region_id, role] = input().split(" ")
             ip = hosts["region_%s"%region_id][role]
