@@ -175,7 +175,7 @@ class a2_client():
                 unbuffered_print("Send to Controller & Wait settings")
 
                 await self.send_to_controller()
-                self.bw_uti = []
+                #self.bw_uti = []
 
                 unbuffered_print("Restart Client")
                 time.sleep(3)
