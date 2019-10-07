@@ -95,7 +95,7 @@ class tf_serving_cls():
                 time.sleep(1)
                 count += 1
 
-                with open("/tmp/client_error.log","a") as f:
+                with open("/tmp/client.log","a") as f:
                     f.writelines([str(traces),str(e)])
                     f.close()
 
