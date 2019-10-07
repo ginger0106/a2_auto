@@ -197,7 +197,7 @@ class a2_client():
     
    
     async def cal_bw_utilization(self):
-        cmd = "sudo nethogs -t -d 2 ens5"
+        cmd = "sudo nethogs -t"
         pid = os.getppid()
         s = await asyncio.create_subprocess_shell(
             cmd,
