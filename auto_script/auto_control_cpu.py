@@ -124,6 +124,30 @@ def pull_all(hosts):
             }
             asyncio.run(sendmsg(ip,20020,pull_dict))
 
+def cmd_all(hosts):
+    for region_id   in range(len(hosts)):
+        region_ip_dict = hosts["region_%s"%i]
+        # scheduler_ip = region_ip_dict["scheduler"]
+        # cpu_server_ip = region_ip_dict["cpu_server"]
+        # gpu_server_ip = region_ip_dict["scheduler"]
+        # client_ip = region_ip_dict["client"]
+        for role,ip in region_ip_dict.items():
+            print("Enter region id and role:")
+    #        [region_id, role] = input().split(" ")
+            ip = hosts["region_%s"%region_id][role]
+
+            print("CMD Mode (exit):")
+            sh_cmd = input()
+            print("cmd is: %s"%sh_cmd)
+            while sh_cmd != "exit":
+                cmd_dict = {
+                    "type":"cmd",
+                    "cmd":sh_cmd
+                }
+                asyncio.run(sendmsg(ip,20020,cmd_dict))
+                sh_cmd = input()
+
+
 def status_all(hosts):
     status_result_dict = {}
     for i in range(len(hosts)):
@@ -487,6 +511,8 @@ if __name__ == "__main__":
                 }
                 asyncio.run(sendmsg(ip,20020,cmd_dict))
                 sh_cmd = input()
+        elif command == "cmd_all":
+            cmd_all(hosts)
         elif command =="bw":
             bandwidth(hosts)
 
