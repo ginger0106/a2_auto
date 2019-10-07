@@ -124,9 +124,9 @@ def pull_all(hosts):
             }
             asyncio.run(sendmsg(ip,20020,pull_dict))
 
-def cmd_all(hosts):
+def cmdcmd_all(hosts):
     for region_id   in range(len(hosts)):
-        region_ip_dict = hosts["region_%s"%i]
+        region_ip_dict = hosts["region_%s"%region_id]
         # scheduler_ip = region_ip_dict["scheduler"]
         # cpu_server_ip = region_ip_dict["cpu_server"]
         # gpu_server_ip = region_ip_dict["scheduler"]
