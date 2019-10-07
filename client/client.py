@@ -197,7 +197,7 @@ class a2_client():
     
    
     async def cal_bw_utilization(self):
-        cmd = "sudo nethogs -t"
+        cmd = "sudo nethogs -t ens5"
         pid = os.getppid()
         s = await asyncio.create_subprocess_shell(
             cmd,
@@ -206,7 +206,7 @@ class a2_client():
         while True:
             sout = await s.stdout.readline()
             bw_uti = bytes.decode(sout)
-            if str(pid) in bw_uti:
+            if 'python' in bw_uti:
                 input_bw = str(bw_uti).split()[1]
                 output_bw = str(bw_uti).split()[2]
                 self.bw_uti.append([input_bw, output_bw, time.time()])
