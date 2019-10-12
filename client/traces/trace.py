@@ -29,16 +29,19 @@ def content():
 
                 content_path = os.path.join(path,f'content_{num}.npy')
                 # print(content_path)
-                trace_lst.append(np.load(content_path)[:60])
-        trace[num] = np.sum(trace_lst)
+                trace_lst.append(np.sum(np.load(content_path)[:60]))
+        trace[num] = (trace_lst)
         trace_lst = []
     print(trace)
 # content()
 
+
 def gen_trace():
-    trace_lst = [1,0]*10+[4]*20+[1]*680
-    print(trace_lst)
-    np.save('/home/ginger/a2_auto/client/traces/region_0/content_8.npy',trace_lst)
+    trace_lst = [4]*720#+[4]*20+[1]*680
+    #print(trace_lst)
+    for i in  range(6):
+        np.save(f'/home/ginger/a2_auto/client/traces/region_{i}/content_9.npy',trace_lst)
 gen_trace()
-# content()
+
+content()
 
