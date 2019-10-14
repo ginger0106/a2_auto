@@ -206,7 +206,7 @@ class a2_client():
         while True:
             sout = await s.stdout.readline()
             bw_uti = bytes.decode(sout)
-            if str(pid) in bw_uti:
+            if 'python' in bw_uti:
                 input_bw = str(bw_uti).split()[1]
                 output_bw = str(bw_uti).split()[2]
                 self.bw_uti.append([pid,input_bw, output_bw, time.time()])
